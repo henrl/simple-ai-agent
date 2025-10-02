@@ -2,7 +2,7 @@ import "dotenv/config";
 import OpenAI from "openai";
 import process from "node:process";
 import readline from "node:readline/promises";
-import { tools } from "./tools/index.ts";
+import { runTool, tools } from "./tools/index.ts";
 
 const main = async () => {
   console.log("Chat with Omnia (use 'ctrl-c' to quit)");
@@ -32,7 +32,7 @@ const main = async () => {
 
   const runInference = () =>
     client.chat.completions.create({
-      model: "gpt-5",
+      model: "claude-sonnet-4-20250514",
       messages: conversation,
       tools,
     });
@@ -60,7 +60,16 @@ const main = async () => {
           `\u001b[92mTool\u001b[0m: The model wants to run ${toolCall.function.name} with arguments:`,
           toolCall.function.arguments,
         );
+        const toolOutput = await runTool(toolCall.function.name, toolCall.function.arguments || "{}");
+        conversation.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content: toolOutput,
+        });
       }
+      readUserInput = false;
+    } else {
+      readUserInput = true;
     }
   }
 };
