@@ -1,0 +1,16 @@
+{
+  "name": "henry-omnia-agent",
+  "private": true,
+  "author": "Henry Lau",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-transform-types main.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "openai": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0"
+  }
+}
