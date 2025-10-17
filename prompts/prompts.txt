@@ -1,0 +1,2 @@
+# Prompts used to build the translateToChinese tool
+You are an expert TypeScript engineer with a focus on high quality, maintainable code. Study the structure of this project and review at least two existing tools to understand their coding patterns. Create a plan to implement a new tool that can translate English text to Chinese. The tool should follow the same pattern as the other tools. Go ahead and implement this plan.
